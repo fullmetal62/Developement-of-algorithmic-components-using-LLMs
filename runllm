@@ -1,0 +1,21 @@
+from my_instance import MyExtendedInstance  # adjust if you only have MyInstance
+from my_solution import MySolution
+
+
+from llm_decision_selector_final import LLMDrivenAlgorithm
+
+
+
+def run_once(file_name: str, time_budget_ms: int ):
+    instance = MyExtendedInstance(file_name)
+    solution_class=MySolution
+    algorithm = LLMDrivenAlgorithm(solution_class, instance_data=instance)
+    final_solution = algorithm.solve(instance=instance, time_budget_ms=time_budget_ms)
+
+    print("Final Cost:", final_solution.get_objective())
+    print("Final Tour:", final_solution.solution)
+    return final_solution
+
+
+
+run_once("dj38.txt", time_budget_ms=60_000)
