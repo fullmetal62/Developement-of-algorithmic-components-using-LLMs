@@ -18,4 +18,4 @@ def run_once(file_name: str, time_budget_ms: int ):
 
 
 
-run_once("dj38.txt", time_budget_ms=60_000)
+run_once("pr76.txt", time_budget_ms=60_000)

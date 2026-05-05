@@ -7,10 +7,11 @@ from typing import Dict, Tuple, Any, List
 
 
 logger = logging.getLogger("tsp_llm.llm")
-GEMINI_API_KEY = "your_API_key"
-genai.configure(api_key=GEMINI_API_KEY)
-
-model = genai.GenerativeModel("gemini-2.5-pro") 
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
+model = None
+if GEMINI_API_KEY:
+    genai.configure(api_key=GEMINI_API_KEY)
+    model = genai.GenerativeModel("gemini-2.5-pro")
 STRICT_AI_ONLY = os.getenv("LLM_AI_ONLY", "1").lower() in ("1", "true", "yes")
 
 STRICT_NO_FALLBACK = os.getenv("LLM_STRICT", "0") in ("1", "true", "True")
